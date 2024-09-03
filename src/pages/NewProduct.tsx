@@ -5,7 +5,6 @@ import { ErrorMessage } from "../components/ErrorMessage";
 export const NewProduct = () => {
 
   const error = useActionData() as string;
-  console.log(error)
 
   return (
     <>

@@ -1,5 +1,5 @@
-import { ActionFunctionArgs } from "react-router-dom";
-import { addProduct } from "../services/ProductService";
+import { ActionFunctionArgs, redirect } from "react-router-dom";
+import { addProduct, getProducts } from "../services/ProductService";
 
 export async function newProductAction({ request }: ActionFunctionArgs) {
   const data = Object.fromEntries(await request.formData());
@@ -14,7 +14,11 @@ export async function newProductAction({ request }: ActionFunctionArgs) {
     return error;
   }
 
-  addProduct(data);
+  await addProduct(data);
 
-  return {};
+  return redirect('/');
+}
+
+export async function productsLoader() {
+  return await getProducts();
 }
