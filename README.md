@@ -47,4 +47,11 @@ export default tseslint.config({
     ...react.configs['jsx-runtime'].rules,
   },
 })
+
+onClick={() => navigate(`/products/${product.id}/edit`, {
+              state: {
+                product
+              }
+            })}
 ```
+
