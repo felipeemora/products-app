@@ -1,7 +1,7 @@
 import { ActionFunctionArgs, redirect } from "react-router-dom";
-import { addProduct, updateProduct, } from "../services/ProductService";
+import { addProduct, removeProduct, updateAvailable, updateProduct, } from "../services/ProductService";
 
-// Actions son para formularios
+// Actions son para modificxar datos existentes - formularios
 export async function newProductAction({ request }: ActionFunctionArgs) {
   const data = Object.fromEntries(await request.formData());
   
@@ -39,4 +39,18 @@ export async function editProductAction({ request, params }: ActionFunctionArgs)
   }
 
   return redirect('/');
+}
+
+export async function removeProductAction({ params }: ActionFunctionArgs) {
+  if (params.id !== undefined) {
+    await removeProduct(+params.id);
+  }
+  return redirect('/');
+}
+
+export async function updateAvailableAction({ request }: ActionFunctionArgs) {
+  const data = Object.fromEntries(await request.formData());
+  await updateAvailable(+data.id)
+
+  return {}
 }

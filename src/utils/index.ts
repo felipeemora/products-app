@@ -4,3 +4,7 @@ export const formatCurrency = (currency: number) => {
     currency: 'USD'
   }).format(currency);
 }
+
+export const toBoolean = (str: string) => {
+  return str.toLocaleLowerCase() === "true";
+}

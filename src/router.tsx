@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { Layout } from './layouts/Layout';
 import { Products } from './pages/Products';
 import { NewProduct } from './pages/NewProduct';
-import { editProductAction, newProductAction } from './pages/formActions';
+import { editProductAction, newProductAction, removeProductAction, updateAvailableAction } from './pages/formActions';
 import { EditProduct } from './pages/EditProduct';
 import { editDataLoader, productsLoader } from './pages/formLoaders';
 
@@ -14,7 +14,8 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Products />,
-        loader: productsLoader
+        loader: productsLoader,
+        action: updateAvailableAction,
       },
       {
         path: 'products/add',
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
         element: <EditProduct />,
         loader: editDataLoader,
         action: editProductAction
+      },
+      {
+        path: 'products/:id/delete',
+        action: removeProductAction
       }
     ]
   }
